@@ -5,14 +5,14 @@ const express = require('express');
 const app = express();
 const mainRoute = require('./routes/main');
 const cookieParser = require('cookie-parser')
-app.use(cookieParser())
-app.use('/api/v1', mainRoute)
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
 // middleware
+app.use(cookieParser())
 app.use(express.static('./public'));
 app.use(express.json());
+app.use('/api/v1', mainRoute)
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 

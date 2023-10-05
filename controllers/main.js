@@ -1,8 +1,4 @@
 
-
-
-
-
 const login = async (req , res) => {
     const {username , password} = req.body;
     console.log(username , password)
@@ -16,5 +12,5 @@ const dashboard = async (req , res) => {
 
 
 module.exports = {
-    dashboard,login
+    login , dashboard
 }
