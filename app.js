@@ -13,8 +13,8 @@ app.use(cookieParser())
 app.use(express.static('./public'));
 app.use(express.json());
 app.use('/api/v1', mainRoute)
-app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+app.use(notFoundMiddleware);
 
 const port = process.env.PORT || 3000;
 
