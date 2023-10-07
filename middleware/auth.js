@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const CustomAPIError = require('../errors/custom-error')
+const{UnAuth} = require('../errors/index')
 const authenticationMiddleWare = async (req , res , next) => {
     const authHeaders = req.headers.authorization ;
     if(!authHeaders || !authHeaders.startsWith('Bearer ')){
-        throw new CustomAPIError('no token provided' , 401)
+        throw new UnAuth('no token provided')
     }
     const  token = authHeaders.split(' ')[1]
     try {
@@ -12,7 +12,7 @@ const authenticationMiddleWare = async (req , res , next) => {
         req.user = {id , username};
         next()
     } catch (error) {
-        throw new CustomAPIError('token inst working any more please sign in again ' , 401)
+        throw new UnAuth('token inst working any more please sign in again')
     }
 }
 module.exports = authenticationMiddleWare

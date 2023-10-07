@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const CustomAPIError = require('../errors/custom-error')
+const {badRequest} = require('../errors/index')
 const login = async (req , res) => {
     const {username , password} = req.body;
     if(!username || !password){
-        throw new CustomAPIError('please provide username and password' , 400)
+        throw new badRequest('please provide username and password')
     }
     const id = new Date().getDate()
     const token = jwt.sign({id , username} , process.env.JWT,{expiresIn:'30d'})
